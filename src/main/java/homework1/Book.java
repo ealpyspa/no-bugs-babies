@@ -3,9 +3,9 @@ package homework1;
 public class Book implements Displayable{
     private String name;
     private String author;
-    private String year;
+    private int year;
 
-    public Book(String name, String author, String year) {
+    public Book(String name, String author, int year) {
         this.name = name;
         this.author = author;
         this.year = year;
@@ -27,11 +27,11 @@ public class Book implements Displayable{
         this.author = author;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
