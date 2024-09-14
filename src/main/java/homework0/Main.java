@@ -1,4 +1,4 @@
-package org.example;
+package homework0;
 
 public class Main {
     public static void main(String[] args) {
