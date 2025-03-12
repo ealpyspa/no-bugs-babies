@@ -1,4 +1,4 @@
-package homework1_2;
+package homework_1.homework1_2;
 
 public class Student implements Printable{
     private String name;
@@ -32,7 +32,7 @@ public class Student implements Printable{
 
     @Override
     public void print() {
-        System.out.println("Name: " + name + "\n" + "Student number: " + number + "\n" + "GPA: " + gpa);
+        System.out.println("Name: " + this.name + "\n" + "Student number: " + this.number + "\n" + "GPA: " + this.gpa);
 
     }
 }
