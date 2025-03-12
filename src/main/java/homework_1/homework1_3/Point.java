@@ -1,4 +1,4 @@
-package homework1_3;
+package homework_1.homework1_3;
 
 public class Point implements Movable{
     private double x;

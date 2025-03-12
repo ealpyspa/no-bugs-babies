@@ -1,10 +1,12 @@
-import homework1_1.Book;
-import homework1_2.Student;
-import homework1_3.Point;
-import homework1_4.Clock;
-import homework1_5.Car;
+package homework_1;
 
-public class Main {
+import homework_1.homework1_1.Book;
+import homework_1.homework1_2.Student;
+import homework_1.homework1_3.Point;
+import homework_1.homework1_4.Clock;
+import homework_1.homework1_5.Car;
+
+public class MainHomework {
     public static void main(String[] args) {
 
         //homework1_1
