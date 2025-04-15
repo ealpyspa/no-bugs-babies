@@ -1,4 +1,4 @@
-package homework1_1;
+package hw.homework1.base.homework1_1;
 
 public class Book implements Displayable{
     private String name;
