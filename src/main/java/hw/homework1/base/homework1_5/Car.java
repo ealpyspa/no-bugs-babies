@@ -1,4 +1,4 @@
-package homework1_5;
+package hw.homework1.base.homework1_5;
 
 public class Car implements Drivable{
     private String brand;

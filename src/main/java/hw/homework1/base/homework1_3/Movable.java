@@ -1,4 +1,4 @@
-package homework1_3;
+package hw.homework1.base.homework1_3;
 
 public interface Movable {
     public void moveUp();

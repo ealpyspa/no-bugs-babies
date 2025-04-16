@@ -1,8 +1,8 @@
-import homework1_1.Book;
-import homework1_2.Student;
-import homework1_3.Point;
-import homework1_4.Clock;
-import homework1_5.Car;
+import hw.homework1.base.homework1_1.Book;
+import hw.homework1.base.homework1_2.Student;
+import hw.homework1.base.homework1_3.Point;
+import hw.homework1.base.homework1_4.Clock;
+import hw.homework1.base.homework1_5.Car;
 
 public class Main {
     public static void main(String[] args) {
