@@ -2,22 +2,22 @@ package hw.homework1.advanced.task1;
 
 public class Student {
     private String name;
-    private int ID;
+    private int id;
 
     public Student(String name, int ID) {
         this.name = name;
-        this.ID = ID;
+        this.id = ID;
     }
 
-    public int getID() {
-        return this.ID;
+    public int getId() {
+        return this.id;
     }
 
     @Override
     public String toString() {
         return "Student{" +
                 "name='" + name + '\'' +
-                ", ID=" + ID +
+                ", ID=" + id +
                 '}';
     }
 }

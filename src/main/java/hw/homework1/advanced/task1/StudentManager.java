@@ -15,7 +15,7 @@ public class StudentManager {
 
     public void removeStudentById(int ID) {
         for(int i = 0; i < studentArrayList.size(); i++) {
-            if(studentArrayList.get(i).getID() == ID) {
+            if(studentArrayList.get(i).getId() == ID) {
                 studentArrayList.remove(i);
                 break;
             }
