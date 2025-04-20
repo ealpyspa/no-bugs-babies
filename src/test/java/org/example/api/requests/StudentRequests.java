@@ -1,4 +1,4 @@
-package org.example.api;
+package org.example.api.requests;
 
 import io.restassured.http.ContentType;
 
