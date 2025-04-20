@@ -4,6 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import org.example.api.checkers.UnicornCheckers;
+import org.example.api.models.Unicorn;
 import org.example.api.requests.UnicornRequests;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,27 +17,19 @@ public class UnicornTest {
     @BeforeAll
     public static void setUpTests() {
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
-        RestAssured.baseURI = "https://crudcrud.com/api/66595698398c4fa8913783fecb353397";
+        RestAssured.baseURI = "https://crudcrud.com/api/576ca1fe412444c69d949b98f288ba9d";
     }
 
     @Test
     public void userShouldBeAbleToCreateUnicorn() {
-        UnicornRequests.createUnicorn("""
-                {
-                "name": "White Lotus",
-                 "tail color": "Purple"
-                }
-                """);
+        Unicorn unicorn = new Unicorn("White Lotus", "Purple");
+        UnicornRequests.createUnicorn(unicorn.toJson());
     }
 
     @Test
     public void userShouldBeAbleToDeleteExistingUnicorn() {
-        String id = UnicornRequests.createUnicorn("""
-                {
-                "name": "White Lotus",
-                 "tail color": "Purple"
-                }
-                """);
+        Unicorn unicorn = new Unicorn("White Lotus", "Purple");
+        String id = UnicornRequests.createUnicorn(unicorn.toJson());
 
         UnicornRequests.deleteUnicorn(id);
 
@@ -45,19 +38,11 @@ public class UnicornTest {
 
     @Test
     public void userShouldBeAbleToUpdateTailColorOfExistingUnicorn() {
-        String id = UnicornRequests.createUnicorn("""
-                {
-                "name": "White Lotus",
-                 "tail color": "Purple"
-                }
-                """);
+        Unicorn unicorn = new Unicorn("White Lotus", "Purple");
+        String id = UnicornRequests.createUnicorn(unicorn.toJson());
 
-        UnicornRequests.updateUnicorn(id, """
-                {
-                "name": "White Lotus",
-                 "tail color": "Yellow"
-                }
-                """);
+        unicorn.setTailColor("Yellow");
+        UnicornRequests.updateUnicorn(id, unicorn.toJson());
 
         String actualTailColor = UnicornRequests.getUnicornField(id,"tail color");
 
