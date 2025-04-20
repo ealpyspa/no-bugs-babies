@@ -1,0 +1,8 @@
+
+POST https://crudcrud.com/api/a7dcb813ea314ea7944dcaf347e414ad/unicorn
+Content-Type: application/json
+
+{
+  "name": "While Lotus",
+  "tail color": "Purple"
+}
