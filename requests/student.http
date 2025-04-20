@@ -1,0 +1,17 @@
+DELETE https://crudcrud.com/api/892e492c92ae441690b01164efb3963f/student/680338fff89ba203e817394c
+Accept: application/json
+
+###
+GET https://crudcrud.com/api/892e492c92ae441690b01164efb3963f/student/680338fff89ba203e817394c
+Accept: application/json
+
+###
+POST https://crudcrud.com/api/4d5f2dc88c804f2293c47fe964070201/student
+Content-Type: application/json
+
+{
+  "name": "Sasha Osipov",
+  "grade": 2
+}
+
+###
