@@ -1,3 +1,5 @@
+package hw.homework1.base;
+
 import hw.homework1.base.homework1_1.Book;
 import hw.homework1.base.homework1_2.Student;
 import hw.homework1.base.homework1_3.Point;
