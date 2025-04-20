@@ -4,6 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import org.apache.http.HttpStatus;
+import org.example.api.models.Student;
 import org.example.api.requests.StudentRequests;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ public class SimpleTest {
     @BeforeAll
     public static void setUpTests() {
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
-        RestAssured.baseURI = "https://crudcrud.com/api/4d5f2dc88c804f2293c47fe964070201";
+        RestAssured.baseURI = "https://crudcrud.com/api/576ca1fe412444c69d949b98f288ba9d";
 
         // Принцип программирования: DRY = DO NOT REPEAT YOURSELF;
     }
@@ -22,10 +23,12 @@ public class SimpleTest {
     @Test
     public void userShouldBeAbleCreateStudent() {
         // given - when - then BDD
-        StudentRequests.createStudent("{\n" +
-                "  \"name\": \"Sasha Osipov\",\n" +
-                "  \"grade\": 2\n" +
-                "}");
+
+        // сериализация из JSON в объект и наоборот
+
+        Student student = new Student("Sasha Osipov", 2);
+
+        StudentRequests.createStudent(student.toJson());
     }
 
     @Test
@@ -38,10 +41,8 @@ public class SimpleTest {
         // FAIL FIRST
 
         // ШАГ 1. Создание студента
-       String id = StudentRequests.createStudent("{\n" +
-                "  \"name\": \"Sasha Osipov\",\n" +
-                "  \"grade\": 2\n" +
-                "}");
+        Student student = new Student("Sasha Osipov", 2);
+        String id = StudentRequests.createStudent(student.toJson());
 
         // ШАГ 2. Удаление студента
         StudentRequests.deleteStudent(id);
