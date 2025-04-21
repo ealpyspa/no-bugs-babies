@@ -6,7 +6,7 @@ GET https://crudcrud.com/api/892e492c92ae441690b01164efb3963f/student/680338fff8
 Accept: application/json
 
 ###
-POST https://crudcrud.com/api/4d5f2dc88c804f2293c47fe964070201/student
+POST https://crudcrud.com/api/738e013d40984f6f83310daa88609e28/student
 Content-Type: application/json
 
 {

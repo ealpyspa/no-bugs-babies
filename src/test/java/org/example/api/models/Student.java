@@ -1,31 +1,19 @@
 package org.example.api.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+@Builder
 public class Student {
     private String name;
     private int grade;
 
-    public Student(String name, int grade) {
-        this.name = name;
-        this.grade = grade;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getGrade() {
-        return grade;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", grade=" + grade +
-                '}';
-    }
-
-    public String toJson() {
-        return "{\"name\":\"" + name + "\",\"grade\":" + grade + "}";
-    }
+    @SerializedName("_id")
+    @Expose(serialize = false, deserialize = true)
+    private String id;
 }
