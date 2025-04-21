@@ -35,7 +35,7 @@ public class UnicornRequests {
                 .put("/unicorn/" + id)
                 .then()
                 .assertThat().statusCode(HttpStatus.SC_OK)
-                .body("$", hasKey("tail color"));
+                .body("$", hasKey("tailColor"));
     }
 
     public static String getUnicornField(String id, String field) {

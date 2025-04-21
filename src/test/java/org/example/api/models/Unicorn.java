@@ -14,6 +14,6 @@ public class Unicorn {
     }
 
     public String toJson() {
-        return "{\"name\":\"" + name + "\",\"tail color\":\"" + tailColor + "\"}";
+        return "{\"name\":\"" + name + "\",\"tailColor\":\"" + tailColor + "\"}";
     }
 }

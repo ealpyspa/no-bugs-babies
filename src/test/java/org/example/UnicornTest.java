@@ -17,7 +17,7 @@ public class UnicornTest {
     @BeforeAll
     public static void setUpTests() {
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
-        RestAssured.baseURI = "https://crudcrud.com/api/576ca1fe412444c69d949b98f288ba9d";
+        RestAssured.baseURI = "https://crudcrud.com/api/738e013d40984f6f83310daa88609e28";
     }
 
     @Test
@@ -44,7 +44,7 @@ public class UnicornTest {
         unicorn.setTailColor("Yellow");
         UnicornRequests.updateUnicorn(id, unicorn.toJson());
 
-        String actualTailColor = UnicornRequests.getUnicornField(id,"tail color");
+        String actualTailColor = UnicornRequests.getUnicornField(id,"tailColor");
 
         assertThat(actualTailColor, equalTo("Yellow"));
     }
