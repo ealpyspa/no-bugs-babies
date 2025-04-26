@@ -1,56 +1,58 @@
 package org.example;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selectors;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
+import org.example.ui.datas.BankAccount;
+import org.example.ui.pages.RegisterAccountPage;
+import org.example.utils.RandomData;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.element;
 
 public class SimpleUITest {
 
+    @BeforeAll
+    public static void setUpUITest() {
+        Configuration.baseUrl = "https://parabank.parasoft.com";
+        // Configuration.browser = "firefox";
+        // Configuration.timeout = 10;
+    }
+
+    // Принципы:
+    // DRY = Don't repeat yourself
+    // Веб элементы не ищутся в тесте, они ищутся в Page Object class
+    // Автотест сам создает рандомизированные данные для себя
+
     // negative
     @Test
     public void userCanNotCreateAccountWithNameAndSurnameOnly() {
-        // Подготовка
-        Selenide.open("https://parabank.parasoft.com/parabank/register.htm");
-
-        // Шаги
-        SelenideElement firstName = element(Selectors.byId("customer.firstName"));
-        firstName.sendKeys("Eva");
-
-        SelenideElement lastName = element(Selectors.byId("customer.lastName"));
-        lastName.sendKeys("Ford");
-
-        SelenideElement registerButton = element(Selectors.byValue("Register"));
-        registerButton.click();
+        // page setup
+        RegisterAccountPage registerAccountPage = new RegisterAccountPage();
+        registerAccountPage.open();
+        // test data preparation
+        BankAccount bankAccount = BankAccount.builder()
+                .firstName(RandomData.randomString()).lastName(RandomData.randomString())
+                .build();
+        // steps
+        registerAccountPage.register(bankAccount);
 
         // Проверка ожидаемого результата
-        SelenideElement addressError = element(Selectors.byId("customer.address.street.errors"));
-        addressError.shouldHave(Condition.exactText("Address is required."));
+        registerAccountPage.getAddressError().shouldHave(Condition.exactText("Address is required."));
 
         // все оставшиеся обязательные поля
-        SelenideElement cityError = element(Selectors.byId("customer.address.city.errors"));
-        cityError.shouldHave(Condition.exactText("City is required."));
+        registerAccountPage.getCityError().shouldHave(Condition.exactText("City is required."));
 
-        SelenideElement stateError = element(Selectors.byId("customer.address.state.errors"));
-        stateError.shouldHave(Condition.exactText("State is required."));
+        registerAccountPage.getStateError().shouldHave(Condition.exactText("State is required."));
 
-        SelenideElement zipCodeError = element(Selectors.byId("customer.address.zipCode.errors"));
-        zipCodeError.should(Condition.exactText("Zip Code is required."));
+        registerAccountPage.getZipCodeError().should(Condition.exactText("Zip Code is required."));
 
-        SelenideElement ssnError = element(Selectors.byId("customer.ssn.errors"));
-        ssnError.should(Condition.exactText("Social Security Number is required."));
+        registerAccountPage.getSsnError().should(Condition.exactText("Social Security Number is required."));
 
-        SelenideElement userNameError = element(Selectors.byId("customer.username.errors"));
-        userNameError.should(Condition.exactText("Username is required."));
+        registerAccountPage.getUserNameError().should(Condition.exactText("Username is required."));
 
-        SelenideElement passwordError = element(Selectors.byId("customer.password.errors"));
-        passwordError.should(Condition.exactText("Password is required."));
+        registerAccountPage.getPasswordError().should(Condition.exactText("Password is required."));
 
-        SelenideElement repeatedPasswordError = element(Selectors.byId("repeatedPassword.errors"));
-        repeatedPasswordError.should(Condition.exactText("Password confirmation is required."));
+        registerAccountPage.getRepeatedPasswordError().should(Condition.exactText("Password confirmation is required."));
     }
 
     // positive
