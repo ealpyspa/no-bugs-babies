@@ -15,5 +15,5 @@ public class BankAccount {
     private String ssn;
     private String userName;
     private String password;
-    private String repeatedPassword;
+    // private String repeatedPassword; maybe not needed as password should be equal repeatedPassword
 }

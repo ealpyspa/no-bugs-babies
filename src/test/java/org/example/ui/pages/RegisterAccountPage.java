@@ -50,13 +50,31 @@ public class RegisterAccountPage {
 
     private SelenideElement repeatedPasswordError = element(Selectors.byId("repeatedPassword.errors"));
 
+    private SelenideElement successfulSalutation = element(Selectors.byXpath("//*[@id=\"rightPanel\"]/h1"));
+
+    private SelenideElement successfulMessage = element(Selectors.byXpath("//*[@id=\"rightPanel\"]/p"));
+
     public void open() {
         Selenide.open("/parabank/register.htm");
     }
 
-    public void register(BankAccount bankAccount) {
+    public void unsuccessfulRegister(BankAccount bankAccount) {
         firstNameInput.sendKeys(bankAccount.getFirstName());
         lastNameInput.sendKeys(bankAccount.getLastName());
+        registerButton.click();
+    }
+
+    public void successfulRegister(BankAccount bankAccount) {
+        firstNameInput.sendKeys(bankAccount.getFirstName());
+        lastNameInput.sendKeys(bankAccount.getLastName());
+        addressInput.sendKeys(bankAccount.getAddress());
+        cityInput.sendKeys(bankAccount.getCity());
+        stateInput.sendKeys(bankAccount.getCity());
+        zipCodeInput.sendKeys(bankAccount.getZipCode());
+        ssnInput.sendKeys(bankAccount.getSsn());
+        userNameInput.sendKeys(bankAccount.getUserName());
+        passwordInput.sendKeys(bankAccount.getPassword());
+        repeatedPasswordInput.sendKeys(bankAccount.getPassword()); // repeated password should be equal password
         registerButton.click();
     }
 }
