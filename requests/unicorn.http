@@ -1,0 +1,23 @@
+PUT https://crudcrud.com/api/0b9babdd98cd472ab4b192587e90596f/unicorn/6807cbebf8e86003e8b6813b
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "While Lotus",
+  "tailColor": "Yellow",
+}
+
+###
+
+GET https://crudcrud.com/api/0b9babdd98cd472ab4b192587e90596f/unicorn/6807cbebf8e86003e8b6813b
+Accept: application/json
+
+###
+
+POST https://crudcrud.com/api/0b9babdd98cd472ab4b192587e90596f/unicorn
+Content-Type: application/json
+
+{
+  "name": "While Lotus",
+  "tailColor": "Purple"
+}
