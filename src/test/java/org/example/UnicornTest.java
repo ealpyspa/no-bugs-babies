@@ -6,6 +6,7 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import org.example.api.checkers.UnicornCheckers;
 import org.example.api.models.Unicorn;
 import org.example.api.requests.UnicornRequests;
+import org.example.utils.RandomData;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -17,18 +18,18 @@ public class UnicornTest {
     @BeforeAll
     public static void setUpTests() {
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
-        RestAssured.baseURI = "https://crudcrud.com/api/0b9babdd98cd472ab4b192587e90596f";
+        RestAssured.baseURI = "https://crudcrud.com/api/652c427d55ca43a095611fa14ec504d3";
     }
 
     @Test
     public void userShouldBeAbleToCreateUnicorn() {
-        Unicorn unicorn = Unicorn.builder().name("White Lotus").tailColor("Purple").build();
+        Unicorn unicorn = Unicorn.builder().name(RandomData.randomString()).tailColor(RandomData.randomString()).build();
         UnicornRequests.createUnicorn(unicorn);
     }
 
     @Test
     public void userShouldBeAbleToDeleteExistingUnicorn() {
-        Unicorn unicorn = Unicorn.builder().name("White Lotus").tailColor("Purple").build();
+        Unicorn unicorn = Unicorn.builder().name(RandomData.randomString()).tailColor(RandomData.randomString()).build();
         Unicorn createdUnicorn = UnicornRequests.createUnicorn(unicorn);
 
         UnicornRequests.deleteUnicorn(createdUnicorn.getId());
@@ -38,15 +39,15 @@ public class UnicornTest {
 
     @Test
     public void userShouldBeAbleToUpdateTailColorOfExistingUnicorn() {
-        Unicorn unicorn = Unicorn.builder().name("White Lotus").tailColor("Purple").build();
+        Unicorn unicorn = Unicorn.builder().name(RandomData.randomString()).tailColor(RandomData.randomString()).build();
         Unicorn createdUnicorn = UnicornRequests.createUnicorn(unicorn);
 
-        Unicorn updatedData = Unicorn.builder().name(createdUnicorn.getName()).tailColor("Yellow").build();
+        Unicorn updatedData = Unicorn.builder().name(createdUnicorn.getName()).tailColor(RandomData.randomString()).build();
 
         UnicornRequests.updateUnicorn(createdUnicorn.getId(), updatedData);
 
         Unicorn updatedUnicorn = UnicornRequests.getUnicornById(createdUnicorn.getId());
 
-        assertThat(updatedUnicorn.getTailColor(), equalTo("Yellow"));
+        assertThat(updatedUnicorn.getTailColor(), equalTo(updatedData.getTailColor()));
     }
 }
